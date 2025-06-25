@@ -123,9 +123,10 @@ public static class JsonDefaults
                 var defaultValueAttribute = reflectedProperty.GetCustomAttribute<DefaultValueAttribute>();
                 if (defaultValueAttribute is not null)
                 {
-                    // Skip ReturnType property - it's handled by the constructor and JSON deserialization
-                    if (reflectedProperty.Name == "ReturnType")
+                    if (!reflectedProperty.CanWrite)
+                    {
                         continue;
+                    }
                     
                     // Check if not already set, e.g. by a property initializer
                     if (!Equals(reflectedProperty.GetValue(obj), defaultValueAttribute.Value))

@@ -15,7 +15,7 @@ public class MethodDescription(string? returnType, string name) : MemberDescript
 
     [JsonPropertyOrder(10)]
     [DefaultValue("void")]
-    public string ReturnType { get; internal set; } = returnType ?? "void";
+    public string ReturnType { get; } = returnType ?? "void";
 
     [Newtonsoft.Json.JsonProperty(ItemTypeNameHandling = Newtonsoft.Json.TypeNameHandling.None)]
     [Newtonsoft.Json.JsonConverter(typeof(ConcreteTypeConverter<List<ParameterDescription>>))]
